@@ -14,8 +14,8 @@ class CreateCategoryMenusTable extends Migration
     public function up()
     {
         Schema::create('category_menus', function (Blueprint $table) {
-            $table->foreignId('category_id')->constrained();
-            $table->foreignId('menu_id')->constrained();
+            $table->foreignId('category_id')->constrained()->onDelete('cascade');
+            $table->foreignId('menu_id')->constrained()->onDelete('cascade');
             $table->timestamps();
         });
     }

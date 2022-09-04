@@ -12,6 +12,6 @@ class Menu extends Model
     protected $fillable = ['name', 'description', 'image', 'price'];
 
     public function categories() {
-        return $this->belongsToMany(Category::class, 'category_menu');
+        return $this->belongsToMany(Category::class, 'category_menus');
     }
 }
