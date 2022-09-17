@@ -24,17 +24,34 @@
                             </div>
                         </div>
                         <div class="sm:col-span-6">
-                            <label for="image" class="block text-sm font-medium text-gray-700"> Image </label>
+                            <label for="guest_number" class="block text-sm font-medium text-gray-700"> Guest
+                                Number </label>
                             <div class="mt-1">
-                                <input type="file" id="image" name="image"
+                                <input type="number" id="guest_number" name="guest_number"
                                        class="block w-full appearance-none bg-white border border-gray-400 rounded-md py-2 px-3 text-base leading-normal transition duration-150 ease-in-out sm:text-sm sm:leading-5 @error('name') border-red-400 @enderror"/>
                             </div>
                         </div>
                         <div class="sm:col-span-6 pt-5">
-                            <label for="description" class="block text-sm font-medium text-gray-700">Description</label>
+                            <label for="status" class="block text-sm font-medium text-gray-700">Status</label>
                             <div class="mt-1">
-                                <textarea id="description" rows="3" name="description"
-                                          class="shadow-sm focus:ring-indigo-500 appearance-none bg-white border py-2 px-3 text-base leading-normal transition duration-150 ease-in-out focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md @error('name') border-red-400 @enderror"></textarea>
+                                <select id="status" name="status" class="form-multiselect block w-full mt-1">
+                                    <option value="1">Pending</option>
+                                    <option value="2">Available</option>
+                                    <option value="3">Unavailable</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="sm:col-span-6 pt-5">
+                            <label for="location" class="block text-sm font-medium text-gray-700">Location</label>
+                            <div class="mt-1">
+                                <select id="location" name="location" class="form-multiselect block w-full mt-1">
+{{--                                    @foreach(\App\Enums\TableLocation::class as $location)--}}
+{{--                                        <option value="{{$location->value}}">{{$location->name}}</option>--}}
+{{--                                    @endforeach--}}
+                                    <option value="1">Front</option>
+                                    <option value="2">Inside</option>
+                                    <option value="3">Outside</option>
+                                </select>
                             </div>
                         </div>
                         <div class="mt-6 p-4">
