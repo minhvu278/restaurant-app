@@ -45,9 +45,9 @@
                             <label for="location" class="block text-sm font-medium text-gray-700">Location</label>
                             <div class="mt-1">
                                 <select id="location" name="location" class="form-multiselect block w-full mt-1">
-{{--                                    @foreach(\App\Enums\TableLocation::class as $location)--}}
-{{--                                        <option value="{{$location->value}}">{{$location->name}}</option>--}}
-{{--                                    @endforeach--}}
+                                    {{--                                    @foreach(\App\Enums\TableLocation::class as $location)--}}
+                                    {{--                                        <option value="{{$location->value}}">{{$location->name}}</option>--}}
+                                    {{--                                    @endforeach--}}
                                     <option value="1">Front</option>
                                     <option value="2">Inside</option>
                                     <option value="3">Outside</option>
