@@ -36,11 +36,11 @@ class MenuController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
     public function store(MenuStoreRequest $request)
-    {   
+    {
         $image = $request->file('image')->store('public/menus');
 
         $menu = Menu::create([
@@ -49,18 +49,18 @@ class MenuController extends Controller
             'image' => $image,
             'price' => $request->price,
         ]);
-        
-        if($request->has('categories')){
+
+        if ($request->has('categories')) {
             $menu->categories()->attach($request->categories);
         }
 
-        return redirect(route('admin.menus.index'));
+        return redirect(route('admin.menus.index'))->with('success', 'Created menu successfully');
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function show($id)
@@ -71,7 +71,7 @@ class MenuController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function edit(Menu $menu)
@@ -83,8 +83,8 @@ class MenuController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param \Illuminate\Http\Request $request
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, Menu $menu)
@@ -95,7 +95,7 @@ class MenuController extends Controller
             'price' => 'required'
         ]);
         $image = $menu->image;
-        if ($request->hasFile('image')){
+        if ($request->hasFile('image')) {
             Storage::delete($menu->image);
             $image = $request->file('image')->store('public/menus');
         }
@@ -107,24 +107,25 @@ class MenuController extends Controller
             'image' => $image
         ]);
 
-        if($request->has('categories')){
+        if ($request->has('categories')) {
             $menu->categories()->sync($request->categories);
         }
 
-        return redirect(route('admin.menus.index'));
+        return redirect(route('admin.menus.index'))->with('success', 'Created menu successfully');
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function destroy(Menu $menu)
     {
         Storage::delete($menu->image);
+        $menu->categories()->detach();
         $menu->delete();
 
-        return redirect(route('admin.menus.index'));
+        return redirect(route('admin.menus.index'))->with('danger', 'Deleted table successfully');
     }
 }
