@@ -47,7 +47,7 @@ class CatergoryController extends Controller
             'image' => $image
         ]);
 
-        return redirect(route('admin.categories.index'));
+        return redirect(route('admin.categories.index'))->with('success', 'Created category successfully');
     }
 
     /**
@@ -97,7 +97,7 @@ class CatergoryController extends Controller
             'image' => $image
         ]);
 
-        return redirect(route('admin.categories.index'));
+        return redirect(route('admin.categories.index'))->with('success', 'Updated category successfully');
     }
 
     /**
@@ -109,8 +109,9 @@ class CatergoryController extends Controller
     public function destroy(Category $category)
     {
         Storage::delete($category->image);
+        $category->menus()->detach();
         $category->delete();
 
-        return redirect(route('admin.categories.index'));
+        return redirect(route('admin.categories.index'))->with('danger', 'Deleted category successfully');
     }
 }

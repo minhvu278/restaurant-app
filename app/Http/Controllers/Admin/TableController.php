@@ -31,12 +31,6 @@ class TableController extends Controller
         return view('admin.tables.create');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(TableStoreRequest $request)
     {
         Table::create([
@@ -46,7 +40,7 @@ class TableController extends Controller
             'location' => $request->location,
         ]);
 
-        return redirect(route('admin.tables.index'));
+        return redirect(route('admin.tables.index'))->with('success', 'Created table successfully');
     }
 
     /**
@@ -82,7 +76,7 @@ class TableController extends Controller
     {
         $table->update($request->validated());
 
-        return redirect(route('admin.tables.index'));
+        return redirect(route('admin.tables.index'))->with('success', 'Updated table successfully');
     }
 
     /**
@@ -94,7 +88,8 @@ class TableController extends Controller
     public function destroy(Table $table)
     {
         $table->delete();
+        $table->reservations()->delete();
 
-        return redirect(route('admin.tables.index'));
+        return redirect(route('admin.tables.index'))->with('danger', 'Deleted table successfully');
     }
 }
