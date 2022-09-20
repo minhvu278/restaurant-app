@@ -57,7 +57,7 @@
                             {{ $reservation->res_date }}
                         </th>
                         <th scope="row" class="py-4 px-6 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                            {{ $reservation->table_id }}
+                            {{ $reservation->table->name }}
                         </th>
                         <th scope="row" class="py-4 px-6 font-medium text-gray-900 whitespace-nowrap dark:text-white">
                             {{ $reservation->guest_number }}
