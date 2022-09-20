@@ -39,6 +39,6 @@ class DateBetween implements Rule
      */
     public function message()
     {
-        return 'Vui lòng chọn ngày giữa một tuần';
+        return 'Please choose days of the week';
     }
 }
